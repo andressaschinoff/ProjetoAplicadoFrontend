@@ -1,0 +1,99 @@
+{
+  "version": 2,
+  "cli": {
+    "defaultCollection": "@nrwl/next"
+  },
+  "defaultProject": "feira-na-mao",
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "babel": true
+      }
+    },
+    "@nrwl/next": {
+      "application": {
+        "style": "styled-components",
+        "linter": "eslint"
+      }
+    }
+  },
+  "projects": {
+    "feira-na-mao": {
+      "root": "apps/feira-na-mao",
+      "sourceRoot": "apps/feira-na-mao",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/next:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "root": "apps/feira-na-mao",
+            "outputPath": "dist/apps/feira-na-mao"
+          },
+          "configurations": {
+            "production": {}
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/next:server",
+          "options": {
+            "buildTarget": "feira-na-mao:build",
+            "dev": true
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "feira-na-mao:build:production",
+              "dev": false
+            }
+          }
+        },
+        "export": {
+          "executor": "@nrwl/next:export",
+          "options": {
+            "buildTarget": "feira-na-mao:build:production"
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/feira-na-mao"],
+          "options": {
+            "jestConfig": "apps/feira-na-mao/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/feira-na-mao/**/*.{ts,tsx,js,jsx}"]
+          }
+        }
+      }
+    },
+    "feira-na-mao-e2e": {
+      "root": "apps/feira-na-mao-e2e",
+      "sourceRoot": "apps/feira-na-mao-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/feira-na-mao-e2e/cypress.json",
+            "tsConfig": "apps/feira-na-mao-e2e/tsconfig.e2e.json",
+            "devServerTarget": "feira-na-mao:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "feira-na-mao:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/feira-na-mao-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  }
+}
