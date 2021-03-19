@@ -1,25 +1,24 @@
 import React from 'react';
 import { AppProps } from 'next/app';
-import Head from 'next/head';
-import { ReactComponent as NxLogo } from '../public/nx-logo-white.svg';
-import './styles.css';
+import Box from '@material-ui/core/Box';
+import { ThemeProvider } from '@material-ui/core/styles';
+import GlobalStyles from '../theme/GlobalStyle';
+import { LoadingProvider } from '@feira-na-mao/hooks';
+import { MenuBar } from '@feira-na-mao/components';
+import theme from '../theme';
 
 function CustomApp({ Component, pageProps }: AppProps) {
   return (
-    <>
-      <Head>
-        <title>Welcome to feira-na-mao!</title>
-      </Head>
-      <div className="app">
-        <header className="flex">
-          <NxLogo width="75" height="50" />
-          <h1>Welcome to feira-na-mao!</h1>
-        </header>
-        <main>
-          <Component {...pageProps} />
-        </main>
-      </div>
-    </>
+    <ThemeProvider theme={theme}>
+      <GlobalStyles>
+        <LoadingProvider>
+          <MenuBar />
+          <Box className="app">
+            <Component {...pageProps} />
+          </Box>
+        </LoadingProvider>
+      </GlobalStyles>
+    </ThemeProvider>
   );
 }
 

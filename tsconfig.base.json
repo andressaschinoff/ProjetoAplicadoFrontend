@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@feira-na-mao/hooks": ["libs/hooks/src/index.ts"],
+      "@feira-na-mao/style": ["libs/style/src/index.ts"],
+      "@feira-na-mao/components": ["libs/components/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

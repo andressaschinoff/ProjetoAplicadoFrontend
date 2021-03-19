@@ -1,20 +1,11 @@
 {
   "version": 2,
-  "cli": {
-    "defaultCollection": "@nrwl/next"
-  },
+  "cli": { "defaultCollection": "@nrwl/next" },
   "defaultProject": "feira-na-mao",
   "generators": {
-    "@nrwl/react": {
-      "application": {
-        "babel": true
-      }
-    },
+    "@nrwl/react": { "application": { "babel": true } },
     "@nrwl/next": {
-      "application": {
-        "style": "styled-components",
-        "linter": "eslint"
-      }
+      "application": { "style": "styled-components", "linter": "eslint" }
     }
   },
   "projects": {
@@ -30,16 +21,11 @@
             "root": "apps/feira-na-mao",
             "outputPath": "dist/apps/feira-na-mao"
           },
-          "configurations": {
-            "production": {}
-          }
+          "configurations": { "production": {} }
         },
         "serve": {
           "executor": "@nrwl/next:server",
-          "options": {
-            "buildTarget": "feira-na-mao:build",
-            "dev": true
-          },
+          "options": { "buildTarget": "feira-na-mao:build", "dev": true },
           "configurations": {
             "production": {
               "buildTarget": "feira-na-mao:build:production",
@@ -49,9 +35,7 @@
         },
         "export": {
           "executor": "@nrwl/next:export",
-          "options": {
-            "buildTarget": "feira-na-mao:build:production"
-          }
+          "options": { "buildTarget": "feira-na-mao:build:production" }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -82,15 +66,72 @@
             "devServerTarget": "feira-na-mao:serve"
           },
           "configurations": {
-            "production": {
-              "devServerTarget": "feira-na-mao:serve:production"
-            }
+            "production": { "devServerTarget": "feira-na-mao:serve:production" }
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/feira-na-mao-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "hooks": {
+      "root": "libs/hooks",
+      "sourceRoot": "libs/hooks/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/hooks/**/*.{ts,tsx,js,jsx}"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/hooks"],
+          "options": {
+            "jestConfig": "libs/hooks/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "style": {
+      "root": "libs/style",
+      "sourceRoot": "libs/style/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/style/**/*.{ts,tsx,js,jsx}"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/style"],
+          "options": {
+            "jestConfig": "libs/style/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "components": {
+      "root": "libs/components",
+      "sourceRoot": "libs/components/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/components/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/components"],
+          "options": {
+            "jestConfig": "libs/components/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }
